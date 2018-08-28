@@ -1,0 +1,146 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 57.54719  # enligt garmin
+  longitude: 12.15463 # enligt garmin
+  # Bing 57.547200, 12.154640
+  # Goggle 57.547226, 12.154627
+  # Average 57.547213 12.1546335
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 58 # 58 m enligt garmin
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Stockholm
+  # Customization file
+  customize: !include customize.yaml
+
+zone:
+  - name: Home
+    latitude: 57.54719
+    longitude: 12.15463
+    radius: 100
+    icon: mdi:home
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts:
+     - 192.168.10.24
+     - 192.168.10.45
+    exclude:
+     - 192.168.10.43
+     - 192.168.10.44
+    intervall_seconds: 10
+    consider_home: 180
+    track_new_devices: true
+
+proximity:
+  home:
+    devices:
+      - device_tracker.sensasehlstedtse
+      - device_tracker.astrasehlstedtse
+    tolerance: 0
+    #unit_of_measurement: km
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
+  logger:
+    title: Logger
+    icon: mdi:printer
+    url: http://hassio.local:4277
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+  exclude:
+   # Get rid of some old nameing.
+   # Note entities with swedish letters stil remains.
+   entities:
+      - switch.Altan_NÖ
+      - switch.Altan_NV
+      - switch.Brunnlampa
+      - switch.Dosor
+      - switch.Dosa_A7_Läslampa
+      - switch.Dosa_A8_farmorslampa
+      - switch.Dosa_A9_Golvlampaflygel
+      - switch.Nexa_3500W
+      - switch.Köket
+      - switch.test
+      - switch.Källar_gruppen
+      - switch.Källaren_lampa_soffa
+      - switch.Källaren_taket
+      - switch.Källaren_yttre_hörnet
+      - switch.Källaren_inrehörnet
+      - switch.Källaren_lampetter_tv
+#      - "switch.NEXA_3500_W_B1_(tänder_taknock_och_entre_också)"
+
+
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+python_script:
+
+media_player:
+  - platform: pioneer
+    host: 192.168.10.41
+    name: vsx923
+    port: 8102
+  # - platform: pioneer
+  #   host: 192.168.10.46
+  #   name: bdp450
+  #   port: 8102
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

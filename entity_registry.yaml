@@ -1,0 +1,10 @@
+media_player.apple_tv:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 9d94dbbc4c59be780f0790e7b5ddb206d21ccf087457f59211aa2258f8c83725
+remote.apple_tv:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: 9d94dbbc4c59be780f0790e7b5ddb206d21ccf087457f59211aa2258f8c83725

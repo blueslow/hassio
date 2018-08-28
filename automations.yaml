@@ -1,0 +1,80 @@
+# Atest automation user for development and test of automations
+- id: '1535404518414'
+  alias: Atest
+  trigger:
+  - minutes: /3
+    platform: time
+    seconds: 0
+  condition:
+    condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+    - condition: sun
+      before: sunrise
+  action:
+  - service: switch.turn_on
+    entity_id: switch.At
+  - delay: 00:01:00
+  - service: switch.turn_off
+    entity_id: switch.At
+
+# Btest automation user for development and test of automations
+- id: '1535324953523'
+  alias: Btest
+  trigger:
+  - platform: state
+    entity_id: device_tracker.sensasehlstedtse, device_tracker.astrasehlstedtse
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: or
+    conditions:
+    - condition: sun
+      after: sunrise
+    - condition: sun
+      before: sunset
+  action:
+  - service: switch.turn_on
+    entity_id: switch.Bt
+  - delay: 00:08:00
+  - service: switch.turn_off
+    entity_id: switch.Bt
+
+# Turn on outside.ridgeS floodlight on arrving home after sunset and before
+# sunrise
+- id: '1535424702192'
+  alias: RidgeOnArivingNight
+  trigger:
+  - platform: state
+    entity_id: device_tracker.sensasehlstedtse, device_tracker.astrasehlstedtse
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+    - condition: sun
+      before: sunrise
+  action:
+  - service: switch.turn_on
+    entity_id: switch.Outside_ridgeS
+  - delay: 00:08:00
+  - service: switch.turn_off
+    entity_id: switch.Outside_ridgeS
+
+# Outside lights except ridge floodlight event on for 2 hours
+- id: '1535427194477'
+  alias: OutsideWellandWallsOn
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: "00:00:00"
+  condition: []
+  action:
+  - service: switch.turn_on
+    entity_id: switch.outside_well, switch.outside_porchNW, switch.outside_porchNE
+  - delay: 02:00:00
+  - service: switch.turn_off
+    entity_id: switch.outside_well, switch.outside_porchNW, switch.outside_porchNE
