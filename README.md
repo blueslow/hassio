@@ -2,7 +2,7 @@
 Home automation - Hassio setup on Raspberry Pi 3
 
 This home automation have a couple of automations, basically with conditions that enable triggering
-betwenn sunset and sunrise or triggering at sunset and enabled for a couple of hours. Currently is uses
+between sunset and sunrise or triggering at sunset and enabled for a couple of hours. Currently it uses
 telldus live and telldus switches but telldus live may be changed to tellstick to avoid the dependency
 to telldus live and internet.
 
