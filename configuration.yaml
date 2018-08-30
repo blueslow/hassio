@@ -2,13 +2,11 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 57.54719  # enligt garmin
-  longitude: 12.15463 # enligt garmin
-  # Bing 57.547200, 12.154640
-  # Goggle 57.547226, 12.154627
-  # Average 57.547213 12.1546335
+  latitude: !secret home_lat
+  longitude: !secret home_long
+
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 58 # 58 m enligt garmin
+  elevation: !secret home_alt
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -18,10 +16,13 @@ homeassistant:
 
 zone:
   - name: Home
-    latitude: 57.54719
-    longitude: 12.15463
+    latitude: !secret home_lat
+    longitude: !secret home_long
     radius: 100
     icon: mdi:home
+
+mqtt:
+  broker: 192.168.10.44
 
 device_tracker:
   - platform: nmap_tracker
@@ -31,9 +32,18 @@ device_tracker:
     exclude:
      - 192.168.10.43
      - 192.168.10.44
-    intervall_seconds: 10
+    intervall_seconds: 30
     consider_home: 180
     track_new_devices: true
+  - platform: mqtt_json
+    devices:
+          sensasehlstedtse: 'location/klas'
+          astrasehlstedtse: 'location/monika'
+  # - platform: ddwrt
+  #   host: 192.168.10.249
+  #   username: !secret ddwrt_user
+  #   password: !secret ddwrt_password
+  #   track_new_devices: true
 
 proximity:
   home:
@@ -85,26 +95,26 @@ conversation:
 
 # Enables support for tracking state changes over time
 history:
-  exclude:
+#  exclude:
    # Get rid of some old nameing.
    # Note entities with swedish letters stil remains.
-   entities:
-      - switch.Altan_NÖ
-      - switch.Altan_NV
-      - switch.Brunnlampa
-      - switch.Dosor
-      - switch.Dosa_A7_Läslampa
-      - switch.Dosa_A8_farmorslampa
-      - switch.Dosa_A9_Golvlampaflygel
-      - switch.Nexa_3500W
-      - switch.Köket
-      - switch.test
-      - switch.Källar_gruppen
-      - switch.Källaren_lampa_soffa
-      - switch.Källaren_taket
-      - switch.Källaren_yttre_hörnet
-      - switch.Källaren_inrehörnet
-      - switch.Källaren_lampetter_tv
+#   entities:
+      # - switch.Altan_NÖ
+      # - switch.Altan_NV
+      # - switch.Brunnlampa
+      # - switch.Dosor
+      # - switch.Dosa_A7_Läslampa
+      # - switch.Dosa_A8_farmorslampa
+      # - switch.Dosa_A9_Golvlampaflygel
+      # - switch.Nexa_3500W
+      # - switch.Köket
+      # - switch.test
+      # - switch.Källar_gruppen
+      # - switch.Källaren_lampa_soffa
+      # - switch.Källaren_taket
+      # - switch.Källaren_yttre_hörnet
+      # - switch.Källaren_inrehörnet
+      # - switch.Källaren_lampetter_tv
 #      - "switch.NEXA_3500_W_B1_(tänder_taknock_och_entre_också)"
 
 
@@ -121,6 +131,25 @@ sun:
 # Weather prediction
 sensor:
   - platform: yr
+    name: Vn
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - windDirection
+      - humidity
+  - platform: yr
+    name: Vp 24H
+    forcast: 24
+    monitored_conditions:
+      - symbol
+  - platform: yr
+    name: Vp 48H
+    forcast: 48
+    monitored_conditions:
+      - symbol
+
 
 # Text to speech
 tts:
