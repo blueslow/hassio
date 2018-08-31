@@ -1,4 +1,4 @@
-# Atest automation user for development and test of automations
+#Automation of toweldryer in laundry on weekdays
 - id: '1535404518414'
   alias: ToweldryerTimerOnOffAtWorkdays
   trigger:
@@ -18,6 +18,28 @@
   - delay: 03:00:00
   - service: switch.turn_off
     entity_id: switch.Laundry_walloutlet
+
+#Automation of toweldryer in laundry on saturday and sunday
+- id: 'bd6650eb-d19a-4fd2-8a15-b6bb45a20d61'
+  alias: ToweldryerTimerOnOffAtSatSundays
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: switch.turn_on
+    entity_id: switch.Laundry_walloutlet
+  - delay: 03:00:00
+  - service: switch.turn_off
+    entity_id: switch.Laundry_walloutlet
+
 
 # Btest automation user for development and test of automations
 - id: '1535324953523'
