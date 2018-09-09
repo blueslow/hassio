@@ -14,6 +14,13 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+camera:
+  - platform: mjpeg
+    name: office
+    mjpeg_url: http://apa@192.168.10.101/video/mjpg.cgi
+    still_image_url: http://apa@192.168.10.101/image/jpeg.cgi
+
+
 zone:
   - name: Home
     latitude: !secret home_lat
@@ -32,13 +39,16 @@ device_tracker:
     exclude:
      - 192.168.10.43
      - 192.168.10.44
-    intervall_seconds: 30
-    consider_home: 180
+    interval_seconds: 2000
+    consider_home: 3600
     track_new_devices: true
   - platform: mqtt_json
     devices:
           sensasehlstedtse: 'location/klas'
           astrasehlstedtse: 'location/monika'
+  #- platform: bluetooth_tracker
+  #  interval_seconds: 10
+
   # - platform: ddwrt
   #   host: 192.168.10.249
   #   username: !secret ddwrt_user
@@ -95,29 +105,6 @@ conversation:
 
 # Enables support for tracking state changes over time
 history:
-#  exclude:
-   # Get rid of some old nameing.
-   # Note entities with swedish letters stil remains.
-#   entities:
-      # - switch.Altan_NÖ
-      # - switch.Altan_NV
-      # - switch.Brunnlampa
-      # - switch.Dosor
-      # - switch.Dosa_A7_Läslampa
-      # - switch.Dosa_A8_farmorslampa
-      # - switch.Dosa_A9_Golvlampaflygel
-      # - switch.Nexa_3500W
-      # - switch.Köket
-      # - switch.test
-      # - switch.Källar_gruppen
-      # - switch.Källaren_lampa_soffa
-      # - switch.Källaren_taket
-      # - switch.Källaren_yttre_hörnet
-      # - switch.Källaren_inrehörnet
-      # - switch.Källaren_lampetter_tv
-#      - "switch.NEXA_3500_W_B1_(tänder_taknock_och_entre_också)"
-
-
 
 # View all events in a logbook
 logbook:
@@ -143,13 +130,30 @@ sensor:
     name: Vp 24H
     forcast: 24
     monitored_conditions:
+      - temperature
       - symbol
+      - precipitation
+      - windSpeed
+      - windDirection
+      - humidity
   - platform: yr
     name: Vp 48H
     forcast: 48
     monitored_conditions:
+      - temperature
       - symbol
+      - precipitation
+      - windSpeed
+      - windDirection
+      - humidity
+  - platform: command_line
+    name: Occasion
+    command: "python3 /config/occasion.py"
 
+switch:
+  - platform: broadlink
+    host: !secret broadlink_host
+    mac: !secret broadlink_mac
 
 # Text to speech
 tts:
@@ -169,7 +173,15 @@ media_player:
   #   host: 192.168.10.46
   #   name: bdp450
   #   port: 8102
+  # - platform: dlna_dmr
+  #   name: ktm
+  #   url: http://192.168.10.41
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+#logger:
+#  default: warning
+#  logs:
+#    homeassistant.components.mqtt: debug

@@ -5,13 +5,18 @@
   - platform: time
     at: 06:00:00
   condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.all_devices
+      state: 'home'
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
   action:
   - service: switch.turn_on
     entity_id: switch.Laundry_walloutlet
@@ -26,13 +31,15 @@
   - platform: time
     at: 08:00:00
   condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.all_devices
+      state: 'home'
+    - condition: time
+      weekday:
+      - sat
+      - sun
   action:
   - service: switch.turn_on
     entity_id: switch.Laundry_walloutlet
@@ -40,28 +47,35 @@
   - service: switch.turn_off
     entity_id: switch.Laundry_walloutlet
 
-
 # Btest automation user for development and test of automations
 - id: '1535324953523'
   alias: Btest
   trigger:
-  - platform: state
-    entity_id: device_tracker.sensasehlstedtse, device_tracker.astrasehlstedtse
-    from: 'not_home'
-    to: 'home'
-  condition:
-    condition: or
-    conditions:
-    - condition: sun
-      after: sunrise
-    - condition: sun
-      before: sunset
+  - platform: time
+    minutes: '/03'
+    seconds: 00
+  # condition:
+  #   condition: and
+  #   conditions:
+  #   - condition: state
+  #     entity_id: group.all_devices
+  #     state: 'home'
+  #   - condition: time
+  #     weekday:
+  #       - fri
   action:
   - service: switch.turn_on
     entity_id: switch.Bt
-  - delay: 00:08:00
+  - service: light.turn_on
+    data:
+      entity_id: light.outside_wallne_door
+      brightness: 100
+  - delay: 00:01:00
   - service: switch.turn_off
     entity_id: switch.Bt
+  - service: light.turn_off
+    data:
+      entity_id: light.outside_wallne_door
 
 # Turn on outside.ridgeS floodlight on arrving home after sunset and before
 # sunrise
@@ -82,7 +96,7 @@
   action:
   - service: switch.turn_on
     entity_id: switch.Outside_ridgeS
-  - delay: 00:08:00
+  - delay: 00:05:00
   - service: switch.turn_off
     entity_id: switch.Outside_ridgeS
 
@@ -96,7 +110,88 @@
   condition: []
   action:
   - service: switch.turn_on
-    entity_id: switch.outside_well, switch.outside_porchNW, switch.outside_porchNE
+    entity_id:
+      - switch.outside_well
+      # - switch.outside_walls_corners
+      - switch.outside_porchNW
+      - switch.outside_porchNE
+  - service: light.turn_on
+    data:
+      entity_id: light.outside_wallne_door
+      brightness: 100
   - delay: 02:00:00
   - service: switch.turn_off
-    entity_id: switch.outside_well, switch.outside_porchNW, switch.outside_porchNE
+    entity_id:
+      - switch.outside_well
+      # - switch.outside_walls_corners
+      # - switch.outside_walls_corners # don't seems to go off
+      - switch.outside_porchNW
+      - switch.outside_porchNE
+  - service: light.turn_off
+    data:
+      entity_id: light.outside_wallne_door
+
+# Visibility automations for work_morning, weekdays and weekend
+- id: 'cce2eaee-49f6-446e-a4ef-9ab55da78514'
+  alias: Work morning
+  trigger:
+    - platform: state
+      entity_id: sensor.occasion
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.group_visibility
+    data:
+      entity_id: group.work_sensors
+      cond: sensor.occasion
+      visible_state: 'work_morning'
+
+- id: 'a01ba812-2094-47ed-a3b6-7e81c0586212'
+  alias: Weekday
+  trigger:
+    - platform: state
+      entity_id: sensor.occasion
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.group_visibility
+    data:
+      entity_id: group.weekday_sensors
+      cond: sensor.occasion
+      visible_state: 'weekday'
+
+- id: '156bb4e1-4111-42e8-8584-7dc8da171bce'
+  alias: Weekend
+  trigger:
+    - platform: state
+      entity_id: sensor.occasion
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.group_visibility
+    data:
+      entity_id: group.weekend_sensors
+      cond: sensor.occasion
+      visible_state: 'weekend'
+
+- id: 'b5ffdef9-270a-40ed-b373-f38283a96aa9'
+  alias: Movement_on
+  trigger:
+    - platform: state
+      entity_id: switch.ms
+      from: 'off'
+      to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.bt
+
+- id: 'ef2f26cc-391f-472a-aa1a-1831cb94bbe1'
+  alias: Movement_off
+  trigger:
+    - platform: state
+      entity_id: switch.ms
+      from: 'on'
+      to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.bt

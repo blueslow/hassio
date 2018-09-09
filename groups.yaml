@@ -1,0 +1,188 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.kitchen
+    - group.vardagsrum
+    - group.cellar
+    - group.outside
+    - group.office
+    - group.uitility
+    - device_tracker.astrasehlstedtse
+    - device_tracker.sensasehlstedtse
+    - device_tracker.klaseh
+    - sun.sun
+    - sensor.occasion
+    - group.work_sensors
+    - group.weekday_sensors
+    - group.weekend_sensors
+
+kitchen:
+  name: Köket
+  # view: yes
+  entities:
+  - switch.kitchen_cabinet
+  - light.kitchen_ceiling
+  - switch.kitchen_ceiling_dinner_table
+
+vardagsrum:
+  name: Vardagsrum
+  # view: yes
+  entities:
+    - switch.livingroom_sofaedge
+    - switch.livingroom_grandma
+    - switch.livingroom_floor
+    - switch.livingroom_ceiling
+
+cellar:
+  name: Tvrum
+  # view: yes
+  entities:
+    - switch.cellar_insidecorner
+    - switch.cellar_sofacorner
+    - light.cellar_sofaedge
+    - switch.cellar_wall
+    - switch.cellar_ceiling
+
+cellar_remote:
+  name: Tryckknappar
+  # control: hidden
+  entities:
+    - switch.cellar_remote_11
+    - switch.cellar_remote_12
+    - switch.cellar_remote_13
+    - switch.cellar_remote_14
+    - switch.cellar_remote_21
+    - switch.cellar_entrance_wall_remote
+    #- switch.ms
+
+kitchen_remote:
+  name: Tryckknappar
+  # control: hidden
+  entities:
+    - switch.kitchen_wall_remote_1
+    - switch.kitchen_wall_remote_2
+
+livingroom_remote:
+  name: Tryckknappar
+  # control: hidden
+  entities:
+    - switch.livingroom_wall_remote_1
+    - switch.livingroom_wall_remote_2
+    
+
+outside:
+  name: Utomhus
+  # view: yes
+  entities:
+    - switch.outside_well
+    - switch.outside_ridges
+    - switch.outside_walls_corners
+    - switch.outside_porchnw
+    - switch.outside_porchne
+    - light.outside_wallNE_door
+
+office:
+  name: Kontoret
+  # view: yes
+  entities:
+    - switch.bt
+
+uitility:
+  name: Tvättstuga
+  # view: yes
+  entities:
+    - switch.laundry_walloutlet
+
+weather_current:
+  name: Vädret nu
+  entities:
+    - sensor.vn_temperature
+    - sensor.vn_wind_direction
+    - sensor.vn_wind_speed
+    - sensor.vn_precipitation
+    - sensor.vn_humidity
+
+weather_forcast_24:
+  name: Väder prognos 24 timmar
+  entities:
+    - sensor.vp_24h_temperature
+    - sensor.vp_24h_wind_direction
+    - sensor.vp_24h_wind_speed
+    - sensor.vp_24h_precipitation
+    - sensor.vp_24h_humidity
+
+weather_forcast_48:
+  name: Väder prognos 48 timmar
+  entities:
+    - sensor.vp_48h_temperature
+    - sensor.vp_48h_wind_direction
+    - sensor.vp_48h_wind_speed
+    - sensor.vp_48h_precipitation
+    - sensor.vp_48h_humidity
+
+weather:
+  name: Väder
+  entities:
+    - group.weather_current
+    - group.weather_forecast_24
+    - group.weather_forecast_48
+
+automation_view:
+    name: Automation
+    view: yes
+    entities:
+      - automation.outsidewellandwallson
+      - automation.ridgeonarivingnight
+      - automation.toweldryertimeronoffatsatsundays
+      - automation.toweldryertimeronoffatworkdays
+      - automation.movement_on
+      - automation.movement_off
+
+work_sensors:
+  name: Dags att gå till jobbet
+  entities:
+    - sensor.vn_temperature
+    - sensor.vn_wind_direction
+    - sensor.vn_wind_speed
+    - sensor.vn_precipitation
+    - sensor.vn_humidity
+
+weekday_sensors:
+  name: Arbetsdag
+  entities:
+    - sensor.vp_24h_temperature
+    - sensor.vp_24h_wind_direction
+    - sensor.vp_24h_wind_speed
+    - sensor.vp_24h_precipitation
+    - sensor.vp_24h_humidity
+    - group.weather_current
+
+weekend_sensors:
+  name: Helg
+  entities:
+    - sensor.vp_48h_temperature
+    - sensor.vp_48h_wind_direction
+    - sensor.vp_48h_wind_speed
+    - sensor.vp_48h_precipitation
+    - sensor.vp_48h_humidity
+
+media:
+  name: Multimedia
+  view: yes
+  entities:
+    - media_player.vsx923
+    - media_player.apple_tv
+    - remote.apple_tv
+
+test:
+  name: test
+  view: yes
+  entities:
+    - switch.bt
+    - switch.ms
+    - automation.btest
+    - group.cellar_remote
+    - group.kitchen_remote
+    - group.livingroom_remote
+    - camera.office
