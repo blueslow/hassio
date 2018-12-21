@@ -12,10 +12,44 @@ default_view:
     - device_tracker.sensasehlstedtse
     - device_tracker.klaseh
     - sun.sun
-    - sensor.occasion
     - group.work_sensors
     - group.weekday_sensors
     - group.weekend_sensors
+    - group.test_sensor
+
+
+work_sensors:
+  name: Dags att gå till jobbet
+  entities:
+    - sensor.vn_temperature
+    - sensor.vn_wind_direction
+    - sensor.vn_wind_speed
+    - sensor.vn_precipitation
+    - sensor.vn_humidity
+
+weekday_sensors:
+  name: Arbetsdag
+  entities:
+    - sensor.vp_24h_temperature
+    - sensor.vp_24h_wind_direction
+    - sensor.vp_24h_wind_speed
+    - sensor.vp_24h_precipitation
+    - sensor.vp_24h_humidity
+    - group.weather_current
+
+weekend_sensors:
+  name: Helg
+  entities:
+    - sensor.vn_temperature
+    - sensor.vp_48h_wind_direction
+    - sensor.vp_48h_wind_speed
+
+test_sensor:
+  name: occasion test
+  entities:
+    - sensor.vn_temperature
+    - sensor.vp_48h_wind_direction
+    - sensor.vp_48h_wind_speed
 
 kitchen:
   name: Köket
@@ -69,7 +103,7 @@ livingroom_remote:
   entities:
     - switch.livingroom_wall_remote_1
     - switch.livingroom_wall_remote_2
-    
+
 
 outside:
   name: Utomhus
@@ -81,12 +115,14 @@ outside:
     - switch.outside_porchnw
     - switch.outside_porchne
     - light.outside_wallNE_door
+    - switch.cab_heater
+    - switch.bt
 
 office:
   name: Kontoret
   # view: yes
   entities:
-    - switch.bt
+    - switch.Ct
 
 uitility:
   name: Tvättstuga
@@ -133,39 +169,25 @@ automation_view:
     view: yes
     entities:
       - automation.outsidewellandwallson
+      - automation.outsidewellandwallsoff
       - automation.ridgeonarivingnight
       - automation.toweldryertimeronoffatsatsundays
       - automation.toweldryertimeronoffatworkdays
+      - automation.ToweldryerTimerOnOffAtThursdayEvening
       - automation.movement_on
       - automation.movement_off
-
-work_sensors:
-  name: Dags att gå till jobbet
-  entities:
-    - sensor.vn_temperature
-    - sensor.vn_wind_direction
-    - sensor.vn_wind_speed
-    - sensor.vn_precipitation
-    - sensor.vn_humidity
-
-weekday_sensors:
-  name: Arbetsdag
-  entities:
-    - sensor.vp_24h_temperature
-    - sensor.vp_24h_wind_direction
-    - sensor.vp_24h_wind_speed
-    - sensor.vp_24h_precipitation
-    - sensor.vp_24h_humidity
-    - group.weather_current
-
-weekend_sensors:
-  name: Helg
-  entities:
-    - sensor.vp_48h_temperature
-    - sensor.vp_48h_wind_direction
-    - sensor.vp_48h_wind_speed
-    - sensor.vp_48h_precipitation
-    - sensor.vp_48h_humidity
+      - automation.Cabheater_workdays
+      - automation.Cabheater_weekend
+      - automation.OutsideWellAndCornersOn
+      - automation.OutsideWellAndCornersOff
+      - automation.Work_morning
+      - automation.Weekday
+      - automation.Weekend
+      - automation.Occasion
+      - automation.ChristmastreeMorningOn
+      - automation.ChristmastreeMorningOff
+      - automation.ChristmastreeEveningOn
+      - automation.ChristmastreeEveningOff
 
 media:
   name: Multimedia
@@ -174,6 +196,7 @@ media:
     - media_player.vsx923
     - media_player.apple_tv
     - remote.apple_tv
+    - switch.broadlink
 
 test:
   name: test

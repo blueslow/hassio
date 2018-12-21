@@ -72,6 +72,10 @@ panel_iframe:
     title: Logger
     icon: mdi:printer
     url: http://hassio.local:4277
+  router:
+    title: 'Router'
+    url: 'https://192.168.10.249'
+
 
 # Show links to resources in log and frontend
 #introduction:
@@ -147,7 +151,7 @@ sensor:
       - windDirection
       - humidity
   - platform: command_line
-    name: Occasion
+    name: occasion
     command: "python3 /config/occasion.py"
 
 switch:

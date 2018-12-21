@@ -16,6 +16,9 @@ light.outside_wallNE_door:
 switch.outside_wallS_corners:
   friendly_name: Vägglampor syd hörnen
   icon: mdi:wall-sconce
+switch.cab_heater:
+  friendly_name: Kupévärmare
+  icon: mdi:radiator
 
 switch.kitchen_ceiling_dinner_table:
   friendly_name: Köksbordslampa
@@ -64,20 +67,24 @@ switch.bt:
   friendly_name: Spotlight
   icon: mdi:spotlight
 
+switch.ct:
+  friendly_name: Christmas tree
+  icon: mdi:floor-lamp
+
 switch.cellar_remote_11:
-  friendly_name: Knapp 1
+  friendly_name: Lampa inre hörne
   icon: mdi:remote
 switch.cellar_remote_12:
   friendly_name: Klas läslampa på/av
   icon: mdi:remote
 switch.cellar_remote_13:
-  friendly_name: Knapp 3
+  friendly_name: Tvlampetter
   icon: mdi:remote
 switch.cellar_remote_14:
-  friendly_name: Knapp 4
+  friendly_name: Monikas läslampa
   icon: mdi:remote
 switch.cellar_remote_21:
-  friendly_name: Knapp 6
+  friendly_name: Taklampa
   icon: mdi:remote
 switch.cellar_entrance_wall_remote:
   friendly_name: Taknock på/av
@@ -101,15 +108,15 @@ switch.Livingroom_wall_remote_2:
   friendly_name: Vardagsrum belysning på/av
   icon: mdi:remote
 
-
 switch.ms:
   friendly_name: Rörelse detector
   icon: mdi:arrow-all
 
-
 automation.btest:
   hidden: False
 automation.outsidewellandwallson:
+  hidden: False
+automation.outsidewellandwallsoff:
   hidden: False
 automation.ridgeonarivingnight:
   hidden: False
@@ -117,6 +124,11 @@ automation.toweldryertimeronoffatsatsundays:
   hidden: False
 automation.toweldryertimeronoffatworkdays:
   hidden: False
+automation.Cabheater_weekdays:
+  hidden: False
+automation.Cabheater_workend:
+  hidden: False
+
 
 group.work_sensors:
   hidden: True
@@ -125,4 +137,7 @@ group.workday_sensors:
   hidden: True
 
 group.weekend_sensors:
+  hidden: True
+
+group.test_sensor:
   hidden: True
