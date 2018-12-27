@@ -12,24 +12,26 @@ default_view:
     - device_tracker.sensasehlstedtse
     - device_tracker.klaseh
     - sun.sun
-    - group.work_sensors
-    - group.weekday_sensors
-    - group.weekend_sensors
+    - group.work_sensor
     - group.test_sensor
+    - group.weekend_sensor
+    - group.weekday_sensor
+    - group.christmas
 
-
-work_sensors:
-  name: Dags att gå till jobbet
+work_sensor:
+  name: Trabaco
   entities:
+    - sensor.occasion
     - sensor.vn_temperature
     - sensor.vn_wind_direction
     - sensor.vn_wind_speed
     - sensor.vn_precipitation
     - sensor.vn_humidity
 
-weekday_sensors:
+weekday_sensor:
   name: Arbetsdag
   entities:
+    - sensor.occasion
     - sensor.vp_24h_temperature
     - sensor.vp_24h_wind_direction
     - sensor.vp_24h_wind_speed
@@ -37,16 +39,18 @@ weekday_sensors:
     - sensor.vp_24h_humidity
     - group.weather_current
 
-weekend_sensors:
+weekend_sensor:
   name: Helg
   entities:
+    - sensor.occasion
     - sensor.vn_temperature
     - sensor.vp_48h_wind_direction
     - sensor.vp_48h_wind_speed
 
 test_sensor:
-  name: occasion test
+  name: testoccasion
   entities:
+    - sensor.occasion
     - sensor.vn_temperature
     - sensor.vp_48h_wind_direction
     - sensor.vp_48h_wind_speed
@@ -78,33 +82,6 @@ cellar:
     - switch.cellar_wall
     - switch.cellar_ceiling
 
-cellar_remote:
-  name: Tryckknappar
-  # control: hidden
-  entities:
-    - switch.cellar_remote_11
-    - switch.cellar_remote_12
-    - switch.cellar_remote_13
-    - switch.cellar_remote_14
-    - switch.cellar_remote_21
-    - switch.cellar_entrance_wall_remote
-    #- switch.ms
-
-kitchen_remote:
-  name: Tryckknappar
-  # control: hidden
-  entities:
-    - switch.kitchen_wall_remote_1
-    - switch.kitchen_wall_remote_2
-
-livingroom_remote:
-  name: Tryckknappar
-  # control: hidden
-  entities:
-    - switch.livingroom_wall_remote_1
-    - switch.livingroom_wall_remote_2
-
-
 outside:
   name: Utomhus
   # view: yes
@@ -118,17 +95,20 @@ outside:
     - switch.cab_heater
     - switch.bt
 
-office:
-  name: Kontoret
+christmas:
+  name: Dekoration inomhus
   # view: yes
   entities:
     - switch.Ct
+    - switch.twinkly
 
 uitility:
   name: Tvättstuga
   # view: yes
   entities:
     - switch.laundry_walloutlet
+
+
 
 weather_current:
   name: Vädret nu
@@ -139,8 +119,8 @@ weather_current:
     - sensor.vn_precipitation
     - sensor.vn_humidity
 
-weather_forcast_24:
-  name: Väder prognos 24 timmar
+weather_24:
+  name: Väderprognos 24 timmar
   entities:
     - sensor.vp_24h_temperature
     - sensor.vp_24h_wind_direction
@@ -148,8 +128,8 @@ weather_forcast_24:
     - sensor.vp_24h_precipitation
     - sensor.vp_24h_humidity
 
-weather_forcast_48:
-  name: Väder prognos 48 timmar
+weather_48:
+  name: Väderprognos 48 timmar
   entities:
     - sensor.vp_48h_temperature
     - sensor.vp_48h_wind_direction
@@ -159,10 +139,56 @@ weather_forcast_48:
 
 weather:
   name: Väder
+  view: yes
   entities:
     - group.weather_current
-    - group.weather_forecast_24
-    - group.weather_forecast_48
+    - group.weather_24
+    - group.weather_48
+
+cellar_remote:
+  name: Tryckknappar källare
+  # control: hidden
+  entities:
+    - switch.cellar_remote_11
+    - switch.cellar_remote_12
+    - switch.cellar_remote_13
+    - switch.cellar_remote_14
+    - switch.cellar_remote_21
+    - switch.cellar_entrance_wall_remote
+    #- switch.ms
+
+kitchen_remote:
+  name: Tryckknappar kök
+  # control: hidden
+  entities:
+    - switch.kitchen_wall_remote_1
+    - switch.kitchen_wall_remote_2
+
+livingroom_remote:
+  name: Tryckknappar vardagsrum
+  # control: hidden
+  entities:
+    - switch.livingroom_wall_remote_1
+    - switch.livingroom_wall_remote_2
+
+tryckknappar_view:
+  name: Tryckknappar
+  view: yes
+  entities:
+    - group.cellar_remote
+    - group.kitchen_remote
+    - group.livingroom_remote
+
+
+media:
+  name: Multimedia
+  view: yes
+  entities:
+    - media_player.vsx923
+    - media_player.apple_tv
+    - remote.apple_tv
+    - switch.broadlink
+
 
 automation_view:
     name: Automation
@@ -180,32 +206,17 @@ automation_view:
       - automation.Cabheater_weekend
       - automation.OutsideWellAndCornersOn
       - automation.OutsideWellAndCornersOff
-      - automation.Work_morning
-      - automation.Weekday
-      - automation.Weekend
       - automation.Occasion
       - automation.ChristmastreeMorningOn
       - automation.ChristmastreeMorningOff
       - automation.ChristmastreeEveningOn
       - automation.ChristmastreeEveningOff
 
-media:
-  name: Multimedia
-  view: yes
-  entities:
-    - media_player.vsx923
-    - media_player.apple_tv
-    - remote.apple_tv
-    - switch.broadlink
-
 test:
   name: test
   view: yes
   entities:
-    - switch.bt
     - switch.ms
     - automation.btest
-    - group.cellar_remote
-    - group.kitchen_remote
-    - group.livingroom_remote
     - camera.office
+    - input_boolean.binput1

@@ -37,7 +37,7 @@ switch.livingroom_sofaedge:
   friendly_name: Läslampa
   icon: mdi:floor-lamp
 switch.livingroom_grandma:
-  friendly_name: VFarmorlampa
+  friendly_name: Farmorlampa
   icon: mdi:lamp
 switch.livingroom_floor:
   friendly_name: Golvlampa
@@ -64,12 +64,16 @@ switch.laundry_walloutlet:
   icon: mdi:radiator
 
 switch.bt:
-  friendly_name: Spotlight
-  icon: mdi:spotlight
+  friendly_name: Led rutnät
+  icon: mdi:led-strip
 
 switch.ct:
   friendly_name: Christmas tree
-  icon: mdi:floor-lamp
+  icon: mdi:pine-tree
+
+switch.twinkly:
+  icon: mdi:led-strip
+
 
 switch.cellar_remote_11:
   friendly_name: Lampa inre hörne
@@ -101,7 +105,7 @@ switch.kitchen_wall_remote_2:
 
 
 switch.Livingroom_wall_remote_1:
-  friendly_name: N.A. på/av
+  friendly_name: Julgran på/av
   icon: mdi:remote
 
 switch.Livingroom_wall_remote_2:
@@ -129,15 +133,11 @@ automation.Cabheater_weekdays:
 automation.Cabheater_workend:
   hidden: False
 
-
-group.work_sensors:
-  hidden: True
-
-group.workday_sensors:
-  hidden: True
-
-group.weekend_sensors:
-  hidden: True
-
-group.test_sensor:
-  hidden: True
+# group.work_sensor:
+#   hidden: True
+# group.test_sensor:
+#   hidden: True
+# group.weekend_sensor:
+#   hidden: True
+# group.weekday_sensor:
+#   hidden: True

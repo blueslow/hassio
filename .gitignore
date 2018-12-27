@@ -1,7 +1,15 @@
 # .gitignore file for your config dir
-*
 !*.yaml
 !.gitignore
 secrets.yaml
 known_devices.yaml
 tellduslive.conf
+.storage/
+.uuid
+home-assistant.log
+home-assistant_v2.db
+occ.log
+*.tmp
+.HA_VERSION
+automations_old.yaml
+lb/

@@ -131,7 +131,7 @@ sensor:
       - windDirection
       - humidity
   - platform: yr
-    name: Vp 24H
+    name: vp_24H
     forcast: 24
     monitored_conditions:
       - temperature
@@ -141,7 +141,7 @@ sensor:
       - windDirection
       - humidity
   - platform: yr
-    name: Vp 48H
+    name: vp_48H
     forcast: 48
     monitored_conditions:
       - temperature
@@ -152,9 +152,18 @@ sensor:
       - humidity
   - platform: command_line
     name: occasion
-    command: "python3 /config/occasion.py"
+    command: "python3 /config/python_scripts/occasion.py"
 
 switch:
+  - platform: command_line
+    name: twinkly1
+    switches:
+      twinkly:
+        command_on: "python3 /config/python_scripts/twinkly.py 192.168.10.47 on"
+        command_off: "python3 /config/python_scripts/twinkly.py 192.168.10.47 off"
+        command_state: "python3 /config/python_scripts/twinkly.py 192.168.10.47 state"
+        value_template: "{{ value == \"1\" }}"
+        friendly_name: Twinkly led slinga
   - platform: broadlink
     host: !secret broadlink_host
     mac: !secret broadlink_mac
@@ -185,6 +194,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+input_boolean: !include input_booleans.yaml
 #logger:
 #  default: warning
 #  logs:

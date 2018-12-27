@@ -1,60 +1,74 @@
 # Visibility automations for work_morning, weekdays and weekend
-- id: '156bb4e1-4111-42e8-8584-7dc8da171bce'
-  alias: Weekend
+# - id: '156bb4e1-4111-42e8-8584-7dc8da171bce'
+#   alias: Weekend
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.occasion
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     - service: script.group_visibility
+#       data:
+#         entity_id: group.weekend_sensor
+#         cond: sensor.occasion
+#         visible_state: 'weekend'
+#
+# - id: 'cce2eaee-49f6-446e-a4ef-9ab55da78514'
+#   alias: Work_morning
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.occasion
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     - service: script.group_visibility
+#       data:
+#         entity_id: group.work_sensor
+#         cond: sensor.occasion
+#         visible_state: 'work_morning'
+#
+# - id: 'a01ba812-2094-47ed-a3b6-7e81c0586212'
+#   alias: Weekday
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.occasion
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     - service: script.group_visibility
+#       data:
+#         entity_id: group.weekday_sensor
+#         cond: sensor.occasion
+#         visible_state: 'weekday'
+#
+- id: '019364cf-1d4d-426b-8847-c12f8891fa41'
+  alias: Occasion
   trigger:
     - platform: state
       entity_id: sensor.occasion
     - platform: homeassistant
       event: start
   action:
-    service: script.group_visibility
-    data:
-      entity_id: group.weekend_sensors
-      cond: sensor.occasion
-      visible_state: 'weekend'
-
-- id: 'cce2eaee-49f6-446e-a4ef-9ab55da78514'
-  alias: Work_morning
-  trigger:
-    - platform: state
-      entity_id: sensor.occasion
-    - platform: homeassistant
-      event: start
-  action:
-    service: script.group_visibility
-    data:
-      entity_id: group.work_sensors
-      cond: sensor.occasion
-      visible_state: 'work_morning'
-
-- id: 'a01ba812-2094-47ed-a3b6-7e81c0586212'
-  alias: Weekday
-  trigger:
-    - platform: state
-      entity_id: sensor.occasion
-    - platform: homeassistant
-      event: start
-  action:
-    service: script.group_visibility
-    data:
-      entity_id: group.weekday_sensors
-      cond: sensor.occasion
-      visible_state: 'weekday'
-
-- id: 'test1'
-  alias: Test1
-  trigger:
-    - platform: state
-      entity_id: sensor.occasion
-    - platform: homeassistant
-      event: start
-  action:
-    service: script.group_visibility
-    data:
-      entity_id: group.test_sensor
-      cond: sensor.occasion
-      visible_state: 'test'
-
+    - service: script.group_visibility
+      data:
+        entity_id: group.work_sensor
+        cond: sensor.occasion
+        visible_state: 'work_morning'
+    - service: script.group_visibility
+      data:
+        entity_id: group.test_sensor
+        cond: sensor.occasion
+        visible_state: 'test'
+    - service: script.group_visibility
+      data:
+        entity_id: group.weekend_sensor
+        cond: sensor.occasion
+        visible_state: 'weekend'
+    - service: script.group_visibility
+      data:
+        entity_id: group.weekday_sensor
+        cond: sensor.occasion
+        visible_state: 'weekday'
 
 #Automation of toweldryer in laundry on weekdays
 - id: '1535404518414'
@@ -397,6 +411,7 @@
   - service: switch.turn_on
     entity_id:
       - switch.Ct
+      - switch.twinkly
 
 # Turn of christmastree 22:30
 - id: 'ec9ca141-dfeb-4863-bc05-31a0394d3a1c'
@@ -411,3 +426,24 @@
   - service: switch.turn_off
     entity_id:
       - switch.Ct
+      - switch.twinkly
+
+- id: 'edf25fea-9af9-4c2a-855e-6ab23da30000'
+  alias: cth on
+  trigger:
+  - platform: state
+    entity_id: switch.livingroom_wall_remote_1
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.twinkly
+
+- id: '40680205-2693-482f-9b8a-9da9bfa7a375'
+  alias: cth off
+  trigger:
+  - platform: state
+    entity_id: switch.livingroom_wall_remote_1
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.twinkly
