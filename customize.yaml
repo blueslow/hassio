@@ -1,73 +1,73 @@
-switch.outside_well:
+switch.outside_well_3:
   friendly_name: Brunnlampa
   icon: mdi:lightbulb
-switch.outside_porchne:
+switch.outside_porchne_3:
   friendly_name: Vägglampor nordost
   icon: mdi:wall-sconce-flat
-switch.outside_porchnw:
+switch.outside_porchnw_3:
   friendly_name: Vägglampor nordväst
   icon: mdi:wall-sconce-flat
-switch.outside_ridges:
+switch.outside_ridges_3:
   friendly_name: Taknocksstrålkastare
   icon: mdi:spotlight
-light.outside_wallNE_door:
+light.outside_wallNE_door_3:
   friendly_name: Vägglampa dörr nordost
   icon: mdi:wall-sconce
-switch.outside_wallS_corners:
+switch.outside_wallS_corners_3:
   friendly_name: Vägglampor syd hörnen
   icon: mdi:wall-sconce
-switch.cab_heater:
+switch.cab_heater_3:
   friendly_name: Kupévärmare
   icon: mdi:radiator
 
-switch.kitchen_ceiling_dinner_table:
+switch.kitchen_ceiling_dinner_table_3:
   friendly_name: Köksbordslampa
   icon: mdi:ceiling-light
-light.kitchen_ceiling:
+light.kitchen_ceiling_3:
   friendly_name: Taklampa
   icon: mdi:ceiling-light
-switch.kitchen_cabinet:
+switch.kitchen_cabinet_3:
   friendly_name: Arbetsbelysning
   icon: mdi:lightbulb
 
-switch.livingroom_ceiling:
+switch.livingroom_ceiling_3:
   friendly_name: Taklampa
   icon: mdi:ceiling-light
-switch.livingroom_sofaedge:
+switch.livingroom_sofaedge_3:
   friendly_name: Läslampa
   icon: mdi:floor-lamp
-switch.livingroom_grandma:
+switch.livingroom_grandma_3:
   friendly_name: Farmorlampa
   icon: mdi:lamp
-switch.livingroom_floor:
+switch.livingroom_floor_3:
   friendly_name: Golvlampa
   icon: mdi:floor-lamp
 
-switch.cellar_insidecorner:
+switch.cellar_insidecorner_3:
   friendly_name: Golvlampa (inre hörnet)
   icon: mdi:floor-lamp
-light.cellar_sofaedge:
+light.cellar_sofaedge_3:
   friendly_name: Monikas läslampa
   icon: mdi:floor-lamp
-switch.cellar_sofacorner:
+switch.cellar_sofacorner_3:
   friendly_name: Klas läslampa
   icon: mdi:floor-lamp
-switch.cellar_wall:
+switch.cellar_wall_3:
   friendly_name: Vägglampetter TV
   icon: mdi:wall-sconce
-switch.cellar_ceiling:
+switch.cellar_ceiling_3:
   friendly_name: Taklampa
   icon: mdi:ceiling-light
 
-switch.laundry_walloutlet:
+switch.laundry_walloutlet_3:
   friendly_name: Handuksvärmare
   icon: mdi:radiator
 
-switch.bt:
+switch.bt_3:
   friendly_name: Led rutnät
   icon: mdi:led-strip
 
-switch.ct:
+switch.ct_3:
   friendly_name: Christmas tree
   icon: mdi:pine-tree
 
@@ -75,44 +75,44 @@ switch.twinkly:
   icon: mdi:led-strip
 
 
-switch.cellar_remote_11:
+switch.cellar_remote_11_3:
   friendly_name: Lampa inre hörne
   icon: mdi:remote
-switch.cellar_remote_12:
+switch.cellar_remote_12_3:
   friendly_name: Klas läslampa på/av
   icon: mdi:remote
-switch.cellar_remote_13:
+switch.cellar_remote_13_3:
   friendly_name: Tvlampetter
   icon: mdi:remote
-switch.cellar_remote_14:
+switch.cellar_remote_14_3:
   friendly_name: Monikas läslampa
   icon: mdi:remote
-switch.cellar_remote_21:
+switch.cellar_remote_21_3:
   friendly_name: Taklampa
   icon: mdi:remote
-switch.cellar_entrance_wall_remote:
+switch.cellar_entrance_wall_remote1_3:
   friendly_name: Taknock på/av
   icon: mdi:remote
 
 
-switch.kitchen_wall_remote_1:
+switch.kitchen_wall_remote_1_3:
   friendly_name: Kök arbetsbelysning på/av
   icon: mdi:remote
 
-switch.kitchen_wall_remote_2:
+switch.kitchen_wall_remote_2_3:
   friendly_name: Kök takbelysning på/av
   icon: mdi:remote
 
 
-switch.Livingroom_wall_remote_1:
+switch.Livingroom_wall_remote_1_3:
   friendly_name: Julgran på/av
   icon: mdi:remote
 
-switch.Livingroom_wall_remote_2:
+switch.Livingroom_wall_remote_2_3:
   friendly_name: Vardagsrum belysning på/av
   icon: mdi:remote
 
-switch.ms:
+switch.ms_3:
   friendly_name: Rörelse detector
   icon: mdi:arrow-all
 

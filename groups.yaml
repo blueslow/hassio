@@ -11,6 +11,7 @@ default_view:
     - device_tracker.astrasehlstedtse
     - device_tracker.sensasehlstedtse
     - device_tracker.klaseh
+    - device_tracker.s10esehlstedtse
     - sun.sun
     - group.work_sensor
     - group.test_sensor
@@ -59,54 +60,54 @@ kitchen:
   name: Köket
   # view: yes
   entities:
-  - switch.kitchen_cabinet
-  - light.kitchen_ceiling
-  - switch.kitchen_ceiling_dinner_table
+  - switch.kitchen_cabinet_3
+  - light.kitchen_ceiling_3
+  - switch.kitchen_ceiling_dinner_table_3
 
 vardagsrum:
   name: Vardagsrum
   # view: yes
   entities:
-    - switch.livingroom_sofaedge
-    - switch.livingroom_grandma
-    - switch.livingroom_floor
-    - switch.livingroom_ceiling
+    - switch.livingroom_sofaedge_3
+    - switch.livingroom_grandma_3
+    - switch.livingroom_floor_3
+    - switch.livingroom_ceiling_3
 
 cellar:
   name: Tvrum
   # view: yes
   entities:
-    - switch.cellar_insidecorner
-    - switch.cellar_sofacorner
-    - light.cellar_sofaedge
-    - switch.cellar_wall
-    - switch.cellar_ceiling
+    - switch.cellar_insidecorner_3
+    - switch.cellar_sofacorner_3
+    - light.cellar_sofaedge_3
+    - switch.cellar_wall_3
+    - switch.cellar_ceiling_3
 
 outside:
   name: Utomhus
   # view: yes
   entities:
-    - switch.outside_well
-    - switch.outside_ridges
-    - switch.outside_walls_corners
-    - switch.outside_porchnw
-    - switch.outside_porchne
-    - light.outside_wallNE_door
-    - switch.cab_heater
-    - switch.bt
+    - switch.outside_well_3
+    - switch.outside_ridges_3
+    - switch.outside_walls_corners_3
+    - switch.outside_porchnw_3
+    - switch.outside_porchne_3
+    - light.outside_wallNE_door_3
+    - switch.cab_heater_3
+    - switch.bt_3
 
 christmas:
   name: Dekoration inomhus
   # view: yes
   entities:
-    - switch.Ct
+    - switch.ct_3
     - switch.twinkly
 
 uitility:
   name: Tvättstuga
   # view: yes
   entities:
-    - switch.laundry_walloutlet
+    - switch.laundry_walloutlet_3
 
 
 
@@ -149,27 +150,27 @@ cellar_remote:
   name: Tryckknappar källare
   # control: hidden
   entities:
-    - switch.cellar_remote_11
-    - switch.cellar_remote_12
-    - switch.cellar_remote_13
-    - switch.cellar_remote_14
-    - switch.cellar_remote_21
-    - switch.cellar_entrance_wall_remote
-    #- switch.ms
+    - switch.cellar_remote_11_3
+    - switch.cellar_remote_12_3
+    - switch.cellar_remote_13_3
+    - switch.cellar_remote_14_3
+    - switch.cellar_remote_21_3
+    - switch.cellar_entrance_wall_remote1_3
+    #- switch.ms_3
 
 kitchen_remote:
   name: Tryckknappar kök
   # control: hidden
   entities:
-    - switch.kitchen_wall_remote_1
-    - switch.kitchen_wall_remote_2
+    - switch.kitchen_wall_remote_1_3
+    - switch.kitchen_wall_remote_2_3
 
 livingroom_remote:
   name: Tryckknappar vardagsrum
   # control: hidden
   entities:
-    - switch.livingroom_wall_remote_1
-    - switch.livingroom_wall_remote_2
+    - switch.livingroom_wall_remote_1_3
+    - switch.livingroom_wall_remote_2_3
 
 tryckknappar_view:
   name: Tryckknappar
@@ -180,14 +181,12 @@ tryckknappar_view:
     - group.livingroom_remote
 
 
-media:
-  name: Multimedia
-  view: yes
-  entities:
-    - media_player.vsx923
-    - media_player.apple_tv
-    - remote.apple_tv
-    - switch.broadlink
+pduk:
+    name: Projektorduk
+    entities:
+      - switch.projektordukner
+      - switch.projektordukupp
+      - switch.projektordukstop
 
 
 automation_view:
@@ -220,3 +219,275 @@ test:
     - automation.btest
     - camera.office
     - input_boolean.binput1
+
+ljuskontroll:
+  name: Ljuskontroll
+  entities:
+    - switch.ljuskontroll_on_off
+    - switch.ljuskontroll_idx_1
+    - switch.ljuskontroll_idx_2
+    - switch.ljuskontroll_idx_3
+    - switch.ljuskontroll_idx_4
+    - switch.ljuskontroll_idx_5
+    - switch.ljuskontroll_mute
+    - switch.ljuskontroll_switch
+    - switch.ljuskontroll_up
+    - switch.ljuskontroll_back
+projektorduk2:
+  name: Projektorduk
+  entities:
+    - switch.projektorduk_duk_ner
+    - switch.projektorduk_duk_stop
+    - switch.projektorduk_duk_upp
+apple_tv:
+  name: Apple_TV
+  entities:
+    - switch.apple_tv_on_off
+    - switch.apple_tv_idx_1
+    - switch.apple_tv_idx_2
+    - switch.apple_tv_idx_3
+    - switch.apple_tv_idx_4
+    - switch.apple_tv_idx_5
+    - switch.apple_tv_mute
+vsx_923:
+  name: Vsx-923
+  entities:
+    - switch.vsxminus923_bt_audio
+    - switch.vsxminus923_cable_audio
+    - switch.vsxminus923_av_on_off
+    - switch.vsxminus923_on_plus_bt
+    - switch.vsxminus923_blueray
+    - switch.vsxminus923_mac
+    - switch.vsxminus923_telia
+    - switch.vsxminus923_tv
+    - switch.vsxminus923_cd
+    - switch.vsxminus923_media_server
+    - switch.vsxminus923_ipod_usb
+    - switch.vsxminus923_apple_tv
+    - switch.vsxminus923_hdmi_5_mhl
+    - switch.vsxminus923_vol
+    - switch.vsxminus923_vol
+    - switch.vsxminus923_mute
+pioneer_vsx_920:
+  name: pioneer_vsx_920
+  entities:
+    - switch.pioneer_vsx_920_right
+    - switch.pioneer_vsx_920_on_off
+    - switch.pioneer_vsx_920_mute
+    - switch.pioneer_vsx_920_switch
+    - switch.pioneer_vsx_920_idx_36
+    - switch.pioneer_vsx_920_idx_35
+    - switch.pioneer_vsx_920_idx_34
+    - switch.pioneer_vsx_920_idx_32
+    - switch.pioneer_vsx_920_idx_33
+    - switch.pioneer_vsx_920_idx_31
+    - switch.pioneer_vsx_920_idx_30
+telia:
+  name: Telia
+  entities:
+    - switch.telia_idx_201
+    - switch.telia_idx_202
+    - switch.telia_idx_203
+    - switch.telia_idx_204
+    - switch.telia_idx_206
+    - switch.telia_idx_207
+    - switch.telia_idx_209
+    - switch.telia_idx_210
+    - switch.telia_on_off
+    - switch.telia_volplus
+    - switch.telia_volminus
+    - switch.telia_channelplus
+    - switch.telia_channelminus
+    - switch.telia_1
+    - switch.telia_2
+    - switch.telia_3
+    - switch.telia_4
+    - switch.telia_5
+    - switch.telia_6
+    - switch.telia_7
+    - switch.telia_8
+    - switch.telia_9
+    - switch.telia_0
+    - switch.telia_star
+    - switch.telia_hash
+    - switch.telia_mute
+    - switch.telia_ok
+    - switch.telia_menu
+    - switch.telia_exit
+    - switch.telia_up
+    - switch.telia_down
+    - switch.telia_right
+    - switch.telia_left
+    - switch.telia_idx_200
+    - switch.telia_idx_205
+    - switch.telia_back
+    - switch.telia_switch
+apple_tv_hab:
+  name: Apple_TV_hab
+  entities:
+    - switch.apple_tv_hab_mute
+    - switch.apple_tv_hab_volumen
+    - switch.apple_tv_hab_play_pause
+    - switch.apple_tv_hab_menu
+    - switch.apple_tv_hab_volminus
+    - switch.apple_tv_hab_channelplus
+    - switch.apple_tv_hab_channelminus
+    - switch.apple_tv_hab_exit
+    - switch.apple_tv_hab_menu
+    - switch.apple_tv_hab_idx_20
+    - switch.apple_tv_hab_mute
+    - switch.apple_tv_hab_volumen
+    - switch.apple_tv_hab_play_pause
+    - switch.apple_tv_hab_menu
+    - switch.apple_tv_hab_volminus
+    - switch.apple_tv_hab_channelplus
+    - switch.apple_tv_hab_channelminus
+    - switch.apple_tv_hab_exit
+    - switch.apple_tv_hab_menu
+    - switch.apple_tv_hab_idx_20
+blueray:
+  name: BlueRay
+  entities:
+    - switch.blueray_on_off
+    - switch.blueray_right
+    - switch.blueray_ok
+    - switch.blueray_mute
+    - switch.blueray_switch
+    - switch.blueray_up
+    - switch.blueray_back
+    - switch.blueray_idx_31
+    - switch.blueray_idx_30
+    - switch.blueray_idx_36
+    - switch.blueray_idx_34
+    - switch.blueray_idx_35
+    - switch.blueray_idx_33
+    - switch.blueray_idx_32
+    - switch.blueray_idx_37
+    - switch.blueray_pause
+yamaha:
+  name: Yamaha
+  entities:
+    - switch.yamaha_right
+    - switch.yamaha_on_off
+    - switch.yamaha_mute
+    - switch.yamaha_switch
+    - switch.yamaha_up
+    - switch.yamaha_back
+    - switch.yamaha_idx_34
+    - switch.yamaha_ok
+    - switch.yamaha_dolby_dts
+    - switch.yamaha_night
+    - switch.yamaha_6_1_5_1
+    - switch.yamaha_dvd
+    - switch.yamaha_tv
+    - switch.yamaha_vcr
+    - switch.yamaha_cd
+    - switch.yamaha_md_cdminusr
+    - switch.yamaha_aux
+    - switch.yamaha_radio
+    - switch.yamaha_radio_down
+    - switch.yamaha_radio_up
+    - switch.yamaha_idx_31
+    - switch.yamaha_idx_32
+    - switch.yamaha_idx_33
+    - switch.yamaha_idx_36
+    - switch.yamaha_idx_30
+    - switch.yamaha_idx_35
+tv_light:
+  name: TV_LIGHT
+  entities:
+    - switch.tv_light_power
+    - switch.tv_light_off
+    - switch.tv_light_red
+    - switch.tv_light_blue
+    - switch.tv_light_green
+    - switch.tv_light_navy
+    - switch.tv_light_yellow
+    - switch.tv_light_fade
+    - switch.tv_light_smooth
+    - switch.tv_light_brplus
+    - switch.tv_light_brminus
+    - switch.tv_light_power
+    - switch.tv_light_off
+    - switch.tv_light_red
+    - switch.tv_light_blue
+    - switch.tv_light_green
+    - switch.tv_light_navy
+    - switch.tv_light_yellow
+    - switch.tv_light_fade
+    - switch.tv_light_smooth
+    - switch.tv_light_brplus
+    - switch.tv_light_brminus
+projektor:
+  name: Projektor
+  entities:
+    - switch.projektor_on_off
+    - switch.projektor_right
+    - switch.projektor_left
+    - switch.projektor_ok
+    - switch.projektor_up
+    - switch.projektor_down
+    - switch.projektor_menu
+    - switch.projektor_exit
+    - switch.projektor_back
+tv:
+  name: TV
+  entities:
+    - switch.tv_on_off
+    - switch.tv_userminusdefined
+andersson_tv:
+  name: ANDERSSON_TV
+  entities:
+    - switch.andersson_tv_on_off
+    - switch.andersson_tv_switch_source
+    - switch.andersson_tv_channelplus
+    - switch.andersson_tv_channelminus
+    - switch.andersson_tv_mute
+    - switch.andersson_tv_volplus
+    - switch.andersson_tv_volminus
+    - switch.andersson_tv_1
+    - switch.andersson_tv_8
+    - switch.andersson_tv_2
+    - switch.andersson_tv_3
+    - switch.andersson_tv_4
+    - switch.andersson_tv_5
+    - switch.andersson_tv_6
+    - switch.andersson_tv_7
+    - switch.andersson_tv_9
+    - switch.andersson_tv_0
+    - switch.andersson_tv_star
+    - switch.andersson_tv_hash
+    - switch.andersson_tv_ok
+    - switch.andersson_tv_left
+    - switch.andersson_tv_up
+    - switch.andersson_tv_down
+    - switch.andersson_tv_right
+test2:
+  name: test
+  entities:
+    - switch.test_power_apa
+
+
+media:
+  name: Multimedia
+  view: yes
+  entities:
+#    - media_player.vsx923
+    - media_player.apple_tv
+    - remote.apple_tv
+    - group.pduk
+    - group.ljuskontroll
+    - group.projektorduk2
+    - group.apple_tv
+    - group.vsx_923
+    - group.pioneer_vsx_920
+    - group.telia
+    - group.apple_tv_hab
+    - group.BlueRay
+    - group.yamaha
+    - group.tv_light
+    - group.projektor
+    - group.telia
+    - group.tv
+    - group.andersson_tv
+    - group.test2
