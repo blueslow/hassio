@@ -15,7 +15,7 @@ tts:
   - platform: google_translate
 
 tellduslive:
-  host: 192.168.10.48
+  host: !secret tdlhost
   scan_interval: 1
 
 #panel_iframe:
