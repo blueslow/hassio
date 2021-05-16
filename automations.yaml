@@ -43,10 +43,10 @@
       - fri
   action:
   - service: switch.turn_on
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
   - delay: 03:00:00
   - service: switch.turn_off
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
 
 #Automation of toweldryer in laundry on saturday and sunday
 - id: 'bd6650eb-d19a-4fd2-8a15-b6bb45a20d61'
@@ -66,10 +66,10 @@
       - sun
   action:
   - service: switch.turn_on
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
   - delay: 03:00:00
   - service: switch.turn_off
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
 
 #Automation of toweldryer in laundry on thursday evening
 - id: 'a76df0e5-5835-43d3-9bbe-55010b89c186'
@@ -83,10 +83,10 @@
       - thu
   action:
   - service: switch.turn_on
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
   - delay: 03:00:00
   - service: switch.turn_off
-    entity_id: switch.Laundry_walloutlet_3
+    entity_id: switch.Laundry_walloutlet
 
 # Btest automation user for development and test of automations
 # - id: '1535324953523'
@@ -97,7 +97,7 @@
 #       minutes: 25
 #       seconds: 0
   # - platform: state
-  #   entity_id: switch.bt_3
+  #   entity_id: switch.bt
   #   from: 'OFF'
   #   to: 'ON'
   # condition:
@@ -113,10 +113,10 @@
   #   # - condition: time
   #   #   after: '21:55:00'
   #   - service: switch.turn_off
-  #     entity_id: switch.bt_3
+  #     entity_id: switch.bt
 
 
-# Turn off outside ridgeS floodlight every orning
+# Turn off outside ridgeS floodlight every morning
 - id: 'e42e184f-31e2-48ad-a183-6e855aa2df25'
   alias: RidgeOffEveryMorning
   trigger:
@@ -125,7 +125,7 @@
   condition: []
   action:
     - service: switch.turn_off
-      entity_id: switch.Outside_ridgeS_3
+      entity_id: switch.Outside_ridgeS
 
 
 # Turn on outside.ridgeS floodlight on arrving home after sunset and before
@@ -148,12 +148,12 @@
       before: sunrise
   action:
   - service: switch.turn_on
-    entity_id: switch.Outside_ridgeS_3
+    entity_id: switch.Outside_ridgeS
   - delay: 00:05:00
   - service: switch.turn_off
-    entity_id: switch.Outside_ridgeS_3
+    entity_id: switch.Outside_ridgeS
 
-# Outside lights except ridge floodlightand porchNE, event on for 2 hours
+# Outside lights except ridge floodlightand porchne, event on for 2 hours
 - id: '1535427194477'
   alias: OutsideWellandWallsOn
   trigger:
@@ -165,24 +165,12 @@
   - delay: '00:{{ (range(0, 30)|random|int) }}:00'
   - service: switch.turn_on
     entity_id:
-      - switch.outside_well_3
-      - switch.outside_walls_corners_3
-      - switch.outside_porchNW_3
-#      - switch.outside_porchNE_3
-      - switch.bt_3
+      - switch.outside_well
+      - switch.outside_walls_corners
+      - switch.outside_porchnw
+      - switch.bt
+#      - switch.outside_porchne
   # - service: light.turn_on
-  #   data:
-  #     entity_id: light.outside_wallne_door
-  #     brightness: 100
-  # - delay: 03:00:00
-  # - service: switch.turn_off
-  #   entity_id:
-  #     - switch.outside_well
-  #     - switch.outside_walls_corners
-  #     # - switch.outside_walls_corners # don't seems to go off
-  #     - switch.outside_porchNW
-  #     - switch.outside_porchNE
-  # - service: light.turn_off
   #   data:
   #     entity_id: light.outside_wallne_door
 
@@ -197,76 +185,77 @@
   - delay: '00:{{ (range(1, 30)|random|int) }}:00'
   - service: switch.turn_off
     entity_id:
-      - switch.outside_well_3
-      - switch.outside_walls_corners_3
-      - switch.outside_porchNW_3
-#      - switch.outside_porchNE_3
-      - switch.bt_3
+      - switch.outside_well
+      - switch.outside_walls_corners
+      - switch.outside_porchnw
+      - switch.bt
+      - switch.outside_porchne
+      - switch.outside_walls_corners
   # - service: light.turn_off
   #   data:
   #     entity_id:
-  #       - light.outside_wallne_door_3
+  #       - light.outside_wallne_door
 
 - id: 'b5ffdef9-270a-40ed-b373-f38283a96aa9'
   alias: Movement_on
   initial_state: false
   trigger:
     - platform: state
-      entity_id: switch.ms_3
+      entity_id: switch.ms
       from: 'off'
       to: 'on'
   action:
     service: switch.turn_on
-    entity_id: switch.bt_3
+    entity_id: switch.bt
 
 - id: 'ef2f26cc-391f-472a-aa1a-1831cb94bbe1'
   alias: Movement_off
   initial_state: false
   trigger:
     - platform: state
-      entity_id: switch.ms_3
+      entity_id: switch.ms
       from: 'on'
       to: 'off'
   action:
     service: switch.turn_off
-    entity_id: switch.bt_3
+    entity_id: switch.bt
 
-- id: '685b69a3-680f-49e4-9151-dbcdd6e030b3'
-  alias: Cabheater_workdays
-  trigger:
-    - platform: time
-      at: '05:30:00'
-  condition:
-    condition: time
-    weekday :
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
-  action:
-    - service: switch.turn_on
-      entity_id: switch.cab_heater_3
-    - delay: 03:00:00
-    - service: switch.turn_off
-      entity_id: switch.cab_heater_3
-
-- id: '11B3D23A-FC32-4EE6-99B1-A1F7758E6D95'
-  alias: Cabheater_weekend
-  trigger:
-    - platform: time
-      at: '07:03:00'
-  condition:
-    condition: time
-    weekday :
-      - sat
-      - sun
-  action:
-    - service: switch.turn_on
-      entity_id: switch.cab_heater_3
-    - delay: 03:00:00
-    - service: switch.turn_off
-      entity_id: switch.cab_heater_3
+# - id: '685b69a3-680f-49e4-9151-dbcdd6e030b3'
+#   alias: Cabheater_workdays
+#   trigger:
+#     - platform: time
+#       at: '05:30:00'
+#   condition:
+#     condition: time
+#     weekday :
+#       - mon
+#       - tue
+#       - wed
+#       - thu
+#       - fri
+#   action:
+#     - service: switch.turn_on
+#       entity_id: switch.cab_heater
+#     - delay: 03:00:00
+#     - service: switch.turn_off
+#       entity_id: switch.cab_heater
+#
+# - id: '11B3D23A-FC32-4EE6-99B1-A1F7758E6D95'
+#   alias: Cabheater_weekend
+#   trigger:
+#     - platform: time
+#       at: '07:03:00'
+#   condition:
+#     condition: time
+#     weekday :
+#       - sat
+#       - sun
+#   action:
+#     - service: switch.turn_on
+#       entity_id: switch.cab_heater
+#     - delay: 03:00:00
+#     - service: switch.turn_off
+#       entity_id: switch.cab_heater
 
 - id: 'A135AE6D-F158-4AAD-9069-D6FE9D782D99'
   alias: OutsideWellAndCornersOn
@@ -289,9 +278,9 @@
   action:
   - service: switch.turn_on
     entity_id:
-      - switch.outside_walls_corners_3
-      - switch.outside_well_3
-      - switch.bt_3
+      - switch.outside_walls_corners
+      - switch.outside_well
+      - switch.bt
 
 - id: 'DA795AAB-77BB-4864-812B-7347643796BC'
   alias: OutsideWellAndCornersOff
@@ -310,9 +299,9 @@
   action:
   - service: switch.turn_off
     entity_id:
-      - switch.outside_walls_corners_3
-      - switch.outside_well_3
-      - switch.bt_3
+      - switch.outside_walls_corners
+      - switch.outside_well
+      - switch.bt
 
 - id: '57d79fbd-dcfd-4802-ab02-dce413bf6c2c'
   alias: ChristmastreeMorningOn
@@ -335,7 +324,7 @@
   action:
   - service: switch.turn_on
     entity_id:
-      - switch.ct_3
+      - switch.ct
 
 - id: '3f4b300f-b34b-40f5-b039-191b04d487c6'
   alias: ChristmastreeMorningOff
@@ -354,7 +343,7 @@
   action:
   - service: switch.turn_off
     entity_id:
-      - switch.ct_3
+      - switch.ct
 
 - id: 'da65b813-166e-449b-ad02-8157bcd29869'
   alias: ChristmastreeEveningOn
@@ -362,11 +351,14 @@
   - platform: sun
     event: sunset
     offset: "00:00:00"
-  condition: []
+  condition:
+    condition: state
+    entity_id: input_boolean.binput1
+    state: 'on'
   action:
   - service: switch.turn_on
     entity_id:
-      - switch.ct_3
+      - switch.ct
       - switch.twinkly
 
 # Turn of christmastree 22:30
@@ -379,7 +371,7 @@
   action:
   - service: switch.turn_off
     entity_id:
-      - switch.ct_3
+      - switch.ct
       - switch.twinkly
 #
 - id: 'edf25fea-9af9-4c2a-855e-6ab23da30000'
@@ -403,3 +395,105 @@
   action:
   - service: switch.turn_off
     entity_id: switch.twinkly
+
+
+# Doorbell pushed turn on outside_ridges for a couple of minutes
+- id: '752ce20f-2ad3-4692-9a5e-a4780505448c'
+  alias: Doorbell_pushed
+  # initial_state: false
+  trigger:
+    - platform: state
+      entity_id: switch.doorbell
+      to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.outside_ridges
+  - service: switch.turn_off
+    entity_id: switch.doorbell
+  - delay: 00:05:00
+  - service: switch.turn_off
+    entity_id:
+      - switch.outside_ridges
+  - service: switch.turn_off
+    entity_id: switch.doorbell
+
+# Activate Doorbell_pushed automation
+- id: '36f699c7-d69d-4986-8236-4c929c28e2bc'
+  alias: Sun_is_set
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:10:00"
+  action:
+  - service: switch.turn_off
+    entity_id: switch.doorbell
+  - service: automation.turn_on
+    entity_id: automation.Doorbell_pushed
+#  - service: persistent_notification.create
+#    data:
+#      title: 'pb'
+#      message: 'Solen är nere.'
+
+# Deactivate Doorbell_pushed automation
+- id: '56a53f8c-a071-442e-809a-c534e92e6367'
+  alias: Sun_is_rise
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "00:00:00"
+  action:
+  - service: automation.turn_off
+    entity_id: automation.Doorbell_pushed
+#  - service: persistent_notification.create
+#    data:
+#      title: 'pb'
+#      message: 'Solen är uppe.'
+
+- id: '10c28036-7b45-4a30-856b-b72282951857'
+  alias: "Jawa's monitors and amplifier turn on"
+  trigger:
+    - platform: mqtt
+      topic: home-assistant/office/sw1
+      payload: 1
+  action:
+  - service: switch.turn_on
+    entity_id: switch.office_a
+
+- id: '765f7d6a-bc2e-44f5-91c2-b2e63b0dc62f'
+  alias: "Jawa's monitors and amplifier turn off"
+  trigger:
+    - platform: mqtt
+      topic: home-assistant/office/sw1
+      payload: 0
+  action:
+  - service: switch.turn_off
+    entity_id: switch.office_a
+
+- id: 'testur1'
+  alias: mqtt_test_on
+  trigger:
+    - platform: mqtt
+      topic: 'home-assistant/office/sw2'
+      payload: 1
+  action:
+  - service: switch.turn_on
+    entity_id: switch.cellar_insidecorner
+  - service: persistent_notification.create
+    data:
+      title: 'mqttpb'
+      message: 'on'
+     
+- id: 'testur2'
+  alias: mqtt_test_off
+  trigger:
+    - platform: mqtt
+      topic: 'home-assistant/office/sw2'
+      payload: 0
+  action:
+  - service: switch.turn_off
+    entity_id: switch.cellar_insidecorner
+  - service: persistent_notification.create
+    data:
+      title: 'mqttpb'
+      message: 'off'
+     

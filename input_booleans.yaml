@@ -2,3 +2,8 @@ binput1:
   name: Aktivera Jul
   initial: off
   icon: mdi:pine-tree
+
+# binput2:
+#   name: Aktivera scripts
+#   initial: off
+#   icon: mdi:light-switch
